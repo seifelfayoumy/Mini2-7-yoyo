@@ -2,16 +2,17 @@ version: '3.8'
 
 services:
   app:
-    image: miniproject2-img
+    # image: miniproject2
     build: .
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - postgres
+      - mongo
 
   postgres:
     image: postgres:15
-    container_name: postgres_container
+    container_name: postgres-miniapp2
     restart: always
     environment:
       POSTGRES_DB: postgres_db
@@ -21,6 +22,7 @@ services:
       - "5432:5432"
 
   mongo:
+    container_name: mongo-miniapp2
     image: mongo
     restart: always
     environment:
